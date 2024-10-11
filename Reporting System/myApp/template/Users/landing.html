@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+
+    <style>
+        .log-buttons {
+            margin-top: 20px; 
+        }
+        
+        .log-action, .log-ai-assist {
+            background-color: #0056b3; 
+            color: white; 
+            font-size: 16px; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+            text-decoration: none; 
+        }
+        
+        .log-action:hover, .log-ai-assist:hover {
+            background-color: #004494; 
+        }
+    </style>
+</head>
+<body>
+    {% load tz %}
+    <div class="dashboard">
+        <header class="header">
+            <h1>User Dashboard</h1>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
+            <nav class="nav">
+                <ul id="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'user_info' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <script>
+            function toggleMenu() {
+                const nav = document.querySelector('.nav');
+                nav.classList.toggle('active'); // Toggle the 'active' class
+            }
+        </script>
+        
+        <div class="main-content">
+            <section class="content">
+                <h2>Welcome, {{ user.username }}</h2>
+
+                <!-- Maintenance Logs Table -->
+                <div class="log-history">
+                    <h3>Your Maintenance Requests</h3>
+                    <table class="log-table">
+                        <thead>
+                            <tr>
+                                <th>Log ID</th>
+                                <th>Block Number</th>
+                                <th>Room Number</th>
+                                <th>Unit Type</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Date Submitted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for request in maintenance_requests %}
+                                <tr>
+                                    <td>{{ request.id }}</td>
+                                    <td>{{ request.block_number }}</td>
+                                    <td>{{ request.room_number }}</td>
+                                    <td>{{ request.unit_type }}</td>
+                                    <td>{{ request.issue_description }}</td>
+                                    <td>{{ request.status }}</td> 
+                                    <td>{{ request.created_at|timezone:"Africa/Johannesburg"|date:"Y-m-d H:i" }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="7">No maintenance requests submitted.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="log-buttons">
+                    <a class="log-action" href="{% url 'submit_maintenance_request' %}">Submit a New Log</a>
+                    <a class="log-ai-assist" href="handyAI.html">Chat with AI Assistance</a>
+                </div>
+            </section>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

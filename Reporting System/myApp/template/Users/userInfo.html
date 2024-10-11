@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/userInfo.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <h1>User Dashboard</h1>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
+            <nav class="nav">
+                <ul id="nav-links">
+                    <li><a href="{% url 'landing' %}">Home</a></li>
+                    <li><a href="{% url 'user_info' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="user-profile">
+                <h2>User Profile</h2>
+                <div class="profile-info">
+                    <p><strong>Name:</strong> {{ user.first_name }}</p>
+                    <p><strong>Surname:</strong> {{ user.last_name }}</p>
+                    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                </div>
+
+                <h3>Update Your Information</h3>
+                <form id="update-info-form" method="post" action="{% url 'update_user_info' %}">
+                    {% csrf_token %}
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="firstname" value="{{ user.first_name }}" required>
+
+                    <label for="surname">Surname:</label>
+                    <input type="text" id="surname" name="lastname" value="{{ user.last_name }}" required>
+
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="text" id="phone-number" name="phone_number" value="{{ user.phone_number }}" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+                    <button type="submit">Update Info</button>
+                </form>
+            </section>
+        </main>
+
+        <script>
+            function toggleMenu() {
+                const nav = document.querySelector('.nav');
+                nav.classList.toggle('active'); // Toggle the 'active' class
+            }
+        </script>
+
+        <footer class="footer">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

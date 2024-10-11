@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/userInfo.css' %}">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <h1>User Dashboard</h1>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
+            <nav class="nav">
+                <ul id="nav-links">
+                    <li><a href="{% url 'landing' %}">Home</a></li>
+                    <li><a href="{% url 'user_info' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <script>
+            function toggleMenu() {
+                const nav = document.querySelector('.nav');
+                nav.classList.toggle('active'); // Toggle the 'active' class
+            }
+        </script>
+
+        <div class="main-content">
+            <section class="content">
+                <div class="log-form">
+                    <h2>Submit a Maintenance Request</h2>
+                    <form id="maintenance-form" method="post" enctype="multipart/form-data" action="{% url 'submit_maintenance_request' %}">
+                        {% csrf_token %}
+                        
+                        <label for="block-number">Block Number:</label>
+                        <input type="text" id="block-number" name="block-number" placeholder="Enter block number" required>
+                        
+                        <label for="room-number">Room Number:</label>
+                        <input type="text" id="room-number" name="room-number" placeholder="Enter room number" required>
+                        
+                        <label for="unit-type">Unit to be Fixed:</label>
+                        <input type="text" id="unit-type" name="unit-type" placeholder="Enter unit name" required>
+                        
+                        <label for="issue-description">Description:</label>
+                        <textarea id="issue-description" name="issue-description" rows="5" placeholder="Describe the issue" required></textarea>
+                        
+                        <label for="photo">Take a Photo (optional):</label>
+                        <input type="file" id="photo" name="attachment" accept="image/*" capture="camera">
+
+                        <input type="hidden" name="unit_number" value="{{ user.unit_number }}">
+                        
+                        <button type="submit">Submit Request</button>
+                    </form>
+                </div>  
+            </section>
+        </div>
+        
+        <footer class="footer">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

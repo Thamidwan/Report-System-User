@@ -1,0 +1,342 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f5; /* Light gray for a soft background */
+    color: #333; /* Darker text for better readability */
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background-color: #007BFF; /* A professional blue color */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure positioning context for absolute elements */
+}
+
+.nav ul {
+    list-style: none;
+}
+
+.nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+    color: #FFC107; /* A golden color on hover */
+}
+
+.burger-menu {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    z-index: 1001; /* Ensure it is above other elements */
+}
+
+.burger-line {
+    width: 25px; /* Width of the burger lines */
+    height: 3px; /* Height of the burger lines */
+    background-color: #fff; /* White color for burger lines */
+    margin: 4px 0; /* Space between lines */
+}
+
+/* Show the burger menu on smaller screens */
+@media (max-width: 768px) {
+    .header h1{
+        display: inline;
+    }
+
+    .burger-menu {
+        display: flex; /* Show burger menu */
+        margin-left: auto; /* Float to the right */
+       
+    }
+
+    .nav {
+        display: none; /* Hide nav links by default on mobile */
+        flex-direction: column; /* Stack links vertically */
+        position: absolute; /* Position them absolutely */
+        top: 80px; /* Adjust position below the header */
+        left: 0;
+        right: 0;
+        background-color: #007bff; /* Match the header background */
+        z-index: 1000; /* Ensure it sits above other content */
+    }
+
+    .nav.active {
+        display: flex; /* Show nav links when active */
+    }
+
+    .nav ul {
+        flex-direction: column; /* Stack links vertically */
+        padding: 0; /* Remove default padding */
+        margin: 0; /* Remove default margin */
+    }
+
+    .nav ul li {
+        margin: 20px 10px; /* Space between links */
+        text-align: center; /* Center the links */
+       padding-top: 15px;
+    }
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    margin-top: 20px;
+}
+
+
+
+
+.content {
+    margin-left: 270px; /* Leave space for the fixed sidebar */
+    padding: 20px;
+    flex: 1;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 48%;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #007BFF; /* Blue for headings */
+}
+
+.recent-activity {
+    margin-top: 20px;
+}
+
+.recent-activity ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.footer {
+    background-color: #007BFF; /* Match the header */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full width sidebar on smaller screens */
+        height: auto; /* Auto height */
+        position: relative; /* Remove fixed position */
+    }
+
+    .content {
+        margin-left: 0; /* No margin for content */
+    }
+
+    .cards {
+        flex-direction: column; /* Stack cards vertically */
+    }
+
+    .card {
+        width: 100%; /* Full width for cards on smaller screens */
+        margin-bottom: 20px; /* Add space between stacked cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column; /* Stack header items */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .nav ul li {
+        display: block; /* Stack menu items vertically */
+        margin: 5px 0; /* Space between items */
+    }
+
+    .profile {
+        flex-direction: column; /* Stack profile picture and text */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .profile-pic {
+        margin-bottom: 10px; /* Space below profile picture */
+    }
+
+    .sidebar {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .header h1 {
+        font-size: 1.5em; /* Smaller header size */
+    }
+
+    .footer {
+        font-size: 0.9em; /* Smaller footer text */
+    }
+}
+
+/* General Form Styles */
+.log-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.log-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.log-form input, .log-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.log-form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.log-form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Table Styles */
+.log-history {
+    margin-bottom: 20px;
+    overflow-x: auto;
+    margin-top: 11px;
+}
+
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.log-table th, .log-table td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+}
+
+.log-table th {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.log-table td {
+    background-color: #f9f9f9;
+}
+
+.log-table tr:nth-child(even) td {
+    background-color: #f0f0f5;
+}
+
+/* Media Queries */
+
+/* For tablets and screens of 768px or less */
+@media (max-width: 768px) {
+    .log-form {
+        padding: 15px;
+    }
+
+    .log-form input, .log-form textarea {
+        padding: 8px;
+    }
+
+    .log-history {
+        margin-bottom: 15px;
+    }
+
+    .log-table th, .log-table td {
+        padding: 10px;
+    }
+
+    /* Hide the 'Unit' column for smaller screens */
+    .unit-column {
+        display: none;
+    }
+
+    .log-buttons {
+        flex-direction: column;
+    }
+
+    .log-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* For small mobile devices (480px or less) */
+@media (max-width: 480px) {
+    .log-form {
+        padding: 10px;
+    }
+
+    .log-form label {
+        font-size: 14px;
+    }
+
+    .log-form input, .log-form textarea {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .log-table th, .log-table td {
+        font-size: 14px;
+    }
+
+    /* Hide the 'Unit' column for very small screens */
+    .unit-column {
+        display: none;
+    }
+
+    .log-buttons button {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+

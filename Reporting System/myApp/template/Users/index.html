@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+</head>
+<body>
+    {% csrf_token %}
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <h2>Tenant<span>Report</span></h2>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn-nav"><a href="/login">Login</a></button>
+                <button class="btn-nav"><a href="/signup">Sign Up</a></button>
+            </div>
+        </div>
+    </nav>
+    
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Report Issues Instantly</h1>
+                <p>Effortlessly manage your building's maintenance with a streamlined platform for tenants and property managers. Report, track, and resolve issues seamlessly, all in one place, ensuring a hassle-free experience for everyone.</p>
+                <button class="btn-hero" onclick="goToPage('signup')">Get Started</button>
+            </div>
+            <div class="hero-image">
+               
+            </div>
+        </div>
+    
+        <!-- Card Section -->
+        <div class="card-container">
+            <h2>Services Under the System</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Report in Real-time</h3>
+                    <p>Receive immediate updates on maintenance issues.</p>
+                </div>
+                <div class="card">
+                    <h3>AI Assistance</h3>
+                    <p>Get AI support for temporary solutions.</p>
+                </div>
+                <div class="card">
+                    <h3>Open Source Contribution</h3>
+                    <p>Contribute to Open Source UI Elements.</p>
+                </div>
+                <div class="card">
+                    <h3>Maintenance Tracking</h3>
+                    <p>Easily track all your maintenance requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tenant Maintenance Reporting System</p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>
